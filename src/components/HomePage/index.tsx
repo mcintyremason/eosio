@@ -20,8 +20,6 @@ class HomePage extends React.Component<{}, HomePageType> {
   handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     return getTopTenBlocks()
     .then((blocks: Array<Block>) => {
-      console.log('hit');
-      console.log(blocks);
       this.setState({
         blocks
       });
@@ -38,7 +36,6 @@ class HomePage extends React.Component<{}, HomePageType> {
         <button value='LOAD' onClick={this.handleClick}>LOAD</button>
         <ul>
           {blocks.map(block => {
-            console.log(block);
             return (<li key={block.id}>{block.id}</li>);
           })}
         </ul>

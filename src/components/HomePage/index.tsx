@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { getHeadBlock } from '../../utils/eosio';
+import { getTopTenBlocks } from '../../utils/eosio';
 
 class HomePage extends React.Component<{}, {}> {
   constructor(props: any) {
@@ -10,7 +10,12 @@ class HomePage extends React.Component<{}, {}> {
   }
 
   handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    getHeadBlock();
+    // getHeadBlock();
+    getTopTenBlocks()
+    .then((data: any) => {
+      console.log(data);
+    })
+    .catch(console.log);
   }
 
   render() {

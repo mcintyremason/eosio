@@ -4,11 +4,14 @@ import * as ReactDOM from 'react-dom';
 import './styles/scss/app.scss';
 
 import HomePage from './components/HomePage/index';
+import { MuiThemeProvider } from 'material-ui/styles';
 
 export default class App extends React.Component {
   render() {
     return(
-      <HomePage/>
+      <MuiThemeProvider>
+        <HomePage/>
+      </MuiThemeProvider>
     );
   }
 }

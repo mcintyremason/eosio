@@ -19,11 +19,11 @@ export type Block = {
   ref_block_prefix: number
 };
 
-export const getHeadBlockId = () =>
+const getHeadBlockId = () =>
   axios.get('https://api.eosnewyork.io/v1/chain/get_info')
   .then(pathOr('', ['data', 'head_block_id']));
 
-export const getBlockById = (blockId: string) =>
+const getBlockById = (blockId: string) =>
   axios.post('https://api.eosnewyork.io/v1/chain/get_block', {
     block_num_or_id: blockId
   })
@@ -38,7 +38,7 @@ export const getBlockById = (blockId: string) =>
 
 const getPreviousBlock = (block: Block): Promise<Block> => getBlockById(propOr({} as Block, 'previous', block));
 
-export const getHeadBlock = () =>
+const getHeadBlock = () =>
   getHeadBlockId()
   .then(getBlockById);
 

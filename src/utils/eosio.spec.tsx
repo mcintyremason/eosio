@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import { getTopTenBlocks, Block } from './eosio';
 
-describe('Utility Functions', () => {
+describe('Utilities', () => {
   describe('eosio', () => {
     describe('getTopTenBlocks', () => {
       it('should always get the top 10 blocks in the blockchain', (done) => {

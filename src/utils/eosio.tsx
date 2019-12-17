@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { pathOr, propOr, isNil } from 'ramda';
 
-type Block = {
+export type Block = {
   timestamp: string,
   producer: string,
   confirmed: string,
@@ -27,36 +27,41 @@ export const getBlockById = (blockId: string) =>
   axios.post('https://api.eosnewyork.io/v1/chain/get_block', {
     block_num_or_id: blockId
   })
-  .then(pathOr('', ['data']));
+  .then((result: AxiosResponse<any>) => {
+    const data = pathOr({} as Block, ['data'], result);
+    const block: Block = {
+      ...data
+    };
 
-const getPreviousBlock = (block: any) => getBlockById(propOr('', 'previous', block));
+    return block;
+  });
+
+const getPreviousBlock = (block: Block): Promise<Block> => getBlockById(propOr({} as Block, 'previous', block));
 
 export const getHeadBlock = () =>
   getHeadBlockId()
   .then(getBlockById);
 
-export const getTopTenBlocks = (blockArray: Array<any> = [], block?: any): any => {
-  return new Promise((resolve, reject) => {
-    if (blockArray.length === 10) {
-      console.log(blockArray);
-      resolve(blockArray);
+export const getTopTenBlocks = (blockArray: Array<Block> = [], block?: Block): any =>
+  new Promise((resolve, reject) => {
+    const blockLimit = 10;
+
+    if (blockArray.length === blockLimit) {
+      return resolve(blockArray);
     } else if (blockArray.length === 0 && isNil(block)) {
-      getHeadBlock()
+      return resolve(getHeadBlock()
       .then(headBlock => {
-        getTopTenBlocks(blockArray, headBlock)
+        return getTopTenBlocks(blockArray, headBlock)
         .catch(reject);
       })
-      .catch(reject);
+      .catch(reject));
     } else if (block) {
-      console.log(block.id);
-      console.log(blockArray.length);
-      getPreviousBlock(block)
+      return resolve(getPreviousBlock(block)
       .then(previousBlock => {
         blockArray.push(block);
-        getTopTenBlocks(blockArray, previousBlock)
+        return getTopTenBlocks(blockArray, previousBlock)
         .catch(reject);
       })
-      .catch(reject);
+      .catch(reject));
     }
   });
-};

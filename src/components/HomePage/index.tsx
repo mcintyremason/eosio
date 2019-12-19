@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { getTopTenBlocks, Block } from '../../utils/eosio';
 import { CircularProgress } from 'material-ui';
+import DataTable from '../DataTable';
+import { isEmpty } from 'ramda';
 
 type HomePageType = {
   blocks: Array<Block>;
@@ -38,7 +40,7 @@ class HomePage extends React.Component<{}, HomePageType> {
   render() {
     const {
       blocks,
-      loading,
+      loading
     } = this.state;
 
     return(
@@ -48,13 +50,24 @@ class HomePage extends React.Component<{}, HomePageType> {
           <button value='LOAD' onClick={this.handleClick}>LOAD</button>
         </div>
         <div>
+          {console.log(blocks)}
           {loading
           ? <CircularProgress />
-          : <ul>
-            {blocks.map(block => {
-              return (<li key={block.id}>{block.id}</li>);
-            })}
-          </ul>}
+          : !isEmpty(blocks) && <div className='blocks-container'>
+            <DataTable
+              rows={blocks}
+              cols={[
+                'id',
+                'timestamp',
+                'transactionsCount'
+              ]}
+            />
+            {/* <ul>
+              {blocks.map(block => {
+                return (<li key={block.id}>{block.id}</li>);
+              })}
+            </ul> */}
+          </div>}
         </div>
       </div>
     );

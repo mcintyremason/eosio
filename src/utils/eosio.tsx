@@ -13,6 +13,7 @@ export type Block = {
   header_extensions: Array<string>,
   producer_signature: string,
   transactions: Array<Object>,
+  transactionsCount?: number,
   block_extensions: Array<any>,
   id: string,
   block_num: string,
@@ -30,7 +31,8 @@ const getBlockById = (blockId: string) =>
   .then((result: AxiosResponse<any>) => {
     const data = pathOr({} as Block, ['data'], result);
     const block: Block = {
-      ...data
+      ...data,
+      transactionsCount: pathOr(undefined, ['transactions', 'length'], data)
     };
 
     return block;

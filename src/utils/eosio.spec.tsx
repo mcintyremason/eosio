@@ -1,17 +1,35 @@
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 
 import { getTopTenBlocks, Block } from './eosio';
 
 describe('Utilities', () => {
   describe('eosio', () => {
     describe('getTopTenBlocks', () => {
-      it('should always get the top 10 blocks in the blockchain', (done) => {
+      let blocks: Array<Block> = [];
+
+      before(done => {
         getTopTenBlocks()
-        .then((blocks: Array<Block>) => {
-          expect(blocks.length).to.eq(10);
+        .then((_blocks: Array<Block>) => {
+          blocks = _blocks;
           done();
         });
-      }).timeout(10000);
+      });
+
+      it('should always resolve an array', () => {
+        assert.isArray(blocks);
+      });
+
+      it('should always resolve the top 10 blocks in the blockchain', () => {
+        expect(blocks).to.have.lengthOf(10);
+      });
+
+      it('should always resolve blocks with at least an id', () => {
+        for (let i = 0, l = blocks.length; i < l; i++) {
+          let block = blocks[i];
+
+          assert.exists(block.id);
+        }
+      });
     });
   });
 });

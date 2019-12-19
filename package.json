@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open",
-    "test": "mocha --recursive --require @babel/register --require ./test/setup.js --require ./test/dom.js --require ignore-styles 'src/**/*.spec{.ts,.tsx}'"
+    "test": "mocha --recursive --timeout 10000 --require @babel/register --require ./test/setup.js --require ./test/dom.js --require ignore-styles 'src/**/*.spec{.ts,.tsx}'"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

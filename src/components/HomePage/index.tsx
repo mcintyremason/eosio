@@ -4,6 +4,7 @@ import { getTopTenBlocks, Block } from '../../utils/eosio';
 import { CircularProgress } from 'material-ui';
 import DataTable from '../DataTable';
 import { isEmpty } from 'ramda';
+import { Button } from '@material-ui/core';
 
 type HomePageType = {
   blocks: Array<Block>;
@@ -47,7 +48,7 @@ class HomePage extends React.Component<{}, HomePageType> {
       <div>
         <div>
           <h1>EOS.IO</h1>
-          <button value='LOAD' onClick={this.handleClick}>LOAD</button>
+          <Button color='secondary' value='LOAD' onClick={this.handleClick}>LOAD</Button>
         </div>
         <div>
           {console.log(blocks)}
@@ -62,11 +63,6 @@ class HomePage extends React.Component<{}, HomePageType> {
                 'transactionsCount'
               ]}
             />
-            {/* <ul>
-              {blocks.map(block => {
-                return (<li key={block.id}>{block.id}</li>);
-              })}
-            </ul> */}
           </div>}
         </div>
       </div>

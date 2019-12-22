@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { getTopTenBlocks, Block } from '../../utils/eosio';
 import { CircularProgress } from 'material-ui';
-import DataTable from '../DataTable';
+import BlockTable from '../BlockTable';
 import { isEmpty } from 'ramda';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 
 type HomePageType = {
   blocks: Array<Block>;
@@ -45,27 +45,43 @@ class HomePage extends React.Component<{}, HomePageType> {
     } = this.state;
 
     return(
-      <div>
-        <div>
+      <Grid container>
+        <Grid
+          container
+          direction='column'
+          justify='center'
+          alignItems='center'
+        >
           <h1>EOS.IO</h1>
-          <Button color='secondary' value='LOAD' onClick={this.handleClick}>LOAD</Button>
-        </div>
-        <div>
-          {console.log(blocks)}
+          <Button
+            color='primary'
+            variant='contained'
+            value='LOAD'
+            onClick={this.handleClick}
+          >
+            LOAD
+          </Button>
+        </Grid>
+        <Grid
+          container
+          direction='column'
+          justify='center'
+          alignItems='center'
+        >
           {loading
           ? <CircularProgress />
           : !isEmpty(blocks) && <div className='blocks-container'>
-            <DataTable
+            <BlockTable
               rows={blocks}
               cols={[
                 'id',
                 'timestamp',
-                'transactionsCount'
+                'actionsCount'
               ]}
             />
           </div>}
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     );
   }
 }

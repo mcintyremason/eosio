@@ -3,3 +3,92 @@
 h1 {
   color: $primary-color;
 }
+
+.blocks-container {
+
+  table {
+
+    thead {
+      
+      th {
+        font-size: .7rem;
+      }
+    }
+
+    tbody {
+    
+      tr {
+
+        td {
+
+          p {
+            max-width: 50px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .blocks-container {
+    table {
+  
+      tbody {
+      
+        tr {
+  
+          td {
+  
+            p {
+              max-width: 100px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .blocks-container {
+    table {
+  
+      tbody {
+      
+        tr {
+  
+          td {
+  
+            p {
+              max-width: 200px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 996px) {
+  .blocks-container {
+    table {
+  
+      tbody {
+      
+        tr {
+  
+          td {
+  
+            p {
+              max-width: initial;
+            }
+          }
+        }
+      }
+    }
+  }
+}

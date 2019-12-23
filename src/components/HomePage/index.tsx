@@ -4,7 +4,7 @@ import { getTopTenBlocks, Block } from '../../utils/eosio';
 import { CircularProgress } from 'material-ui';
 import BlockTable from '../BlockTable';
 import { isEmpty } from 'ramda';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Container, Grid, Typography } from '@material-ui/core';
 
 type HomePageType = {
   blocks: Array<Block>;
@@ -45,7 +45,9 @@ class HomePage extends React.Component<{}, HomePageType> {
     } = this.state;
 
     return(
-      <Grid container>
+      <Container
+        className='home-page-container'
+      >
         <Grid
           container
           direction='column'
@@ -59,7 +61,7 @@ class HomePage extends React.Component<{}, HomePageType> {
             value='LOAD'
             onClick={this.handleClick}
           >
-            LOAD
+            <Typography>LOAD</Typography>
           </Button>
         </Grid>
         <Grid
@@ -67,6 +69,7 @@ class HomePage extends React.Component<{}, HomePageType> {
           direction='column'
           justify='center'
           alignItems='center'
+          className='block-table-grid'
         >
           {loading
           ? <CircularProgress />
@@ -81,7 +84,7 @@ class HomePage extends React.Component<{}, HomePageType> {
             />
           </div>}
         </Grid>
-      </Grid>
+      </Container>
     );
   }
 }

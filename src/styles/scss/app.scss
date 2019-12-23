@@ -1,7 +1,34 @@
 @import './variables';
 
-h1 {
-  color: $primary-color;
+html {
+  height: 100%;
+
+  body {
+
+    height: 100%;
+
+    div.app {
+
+      height: 100%;
+
+      .home-page-container {
+        
+        height: 100%;
+
+        .block-table-grid {
+
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+
+  h1 {
+    color: $primary-color;
+  }
 }
 
 .blocks-container {

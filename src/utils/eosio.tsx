@@ -68,7 +68,7 @@ export type Block = {
   actionsCount: number
 };
 
-const getBlockActions = (block: Block): Array<Action> => {
+export const getBlockActions = (block: Block): Array<Action> => {
   let actions: Array<Action> = [];
 
   for (let i = 0, l = block.transactions.length; i < l; i++) {

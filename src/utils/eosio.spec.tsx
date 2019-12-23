@@ -30,6 +30,18 @@ describe('Utilities', () => {
           assert.exists(block.id);
         }
       });
+
+      it('should always contain at least on action', () => {
+        let actionsCount = 0;
+
+        for (let i = 0, l = blocks.length; i < l; i++) {
+          let block = blocks[i];
+
+          actionsCount += block.actionsCount;
+        }
+
+        expect(actionsCount).gt(0);
+      });
     });
   });
 });

@@ -76,6 +76,13 @@ h1 {
 @media screen and (min-width: 996px) {
   .blocks-container {
     table {
+
+      thead {
+      
+        th {
+          font-size: initial;
+        }
+      }
   
       tbody {
       

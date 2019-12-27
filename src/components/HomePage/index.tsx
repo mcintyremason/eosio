@@ -6,7 +6,6 @@ import {
 } from '@material-ui/core';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
 import { getTopTenBlocks, Block } from '../../utils/eosio';
 import BlockTable from '../BlockTable';
 

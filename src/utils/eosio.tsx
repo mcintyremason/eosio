@@ -4,14 +4,14 @@ import { pathOr, propOr, isNil } from 'ramda';
 type ActionAuthorization = {
   actor: string,
   permission: string
-}
+};
 
 type ActionData = {
   from: string,
   to: string,
   quantity: string,
   memo: string
-}
+};
 
 type Action = {
   account: string,

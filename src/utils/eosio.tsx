@@ -35,8 +35,8 @@ type TRXTransaction = {
 
 type BlockTransaction = {
   status: string,
-  cpu_usage_us: 3033,
-  net_usage_words: 106,
+  cpu_usage_us: number,
+  net_usage_words: number,
   trx: {
     id: string,
     signatures: Array<string>,
@@ -51,19 +51,18 @@ type BlockTransaction = {
 export type Block = {
   timestamp: string,
   producer: string,
-  confirmed: string,
+  confirmed: number,
   previous: string,
   transaction_mroot: string,
   action_mroot: string,
-  schedule_version: string,
-  new_producers: string,
+  schedule_version: number,
+  new_producers: string | null,
   header_extensions: Array<string>,
   producer_signature: string,
   transactions: Array<BlockTransaction>,
-  transactionsCount?: number,
   block_extensions: Array<any>,
   id: string,
-  block_num: string,
+  block_num: number,
   ref_block_prefix: number,
   actionsCount: number
 };

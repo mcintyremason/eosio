@@ -4,6 +4,7 @@ import {
   Container, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography
 } from '@material-ui/core';
 
+import { Block } from '../../utils/eosio';
 import BlockDialog from '../BlockDialog';
 
 type BlockTableProps = {
@@ -13,11 +14,11 @@ type BlockTableProps = {
 
 type BlockTableType = {
   showDialog: boolean;
-  selectedValue: any;
+  selectedValue: Block | null;
 } & BlockTableProps;
 
 class BlockTable extends React.Component<BlockTableProps, BlockTableType> {
-  constructor(props: any) {
+  constructor(props: BlockTableProps) {
     super(props);
 
     this.state = {
@@ -30,10 +31,10 @@ class BlockTable extends React.Component<BlockTableProps, BlockTableType> {
     this.dialogClose = this.dialogClose.bind(this);
   }
 
-  dialogOpen = (row: any) => {
+  dialogOpen = (row: Block) => {
     this.setState({
       showDialog: true,
-      selectedValue: JSON.stringify(row, null, 2)
+      selectedValue: row
     });
   }
 
@@ -57,7 +58,7 @@ class BlockTable extends React.Component<BlockTableProps, BlockTableType> {
           <Table className='data-table' aria-label='simple table'>
             <TableHead>
               <TableRow>
-                {cols.map(col => (
+                {cols && cols.map(col => (
                   <TableCell align='right' key={col}>
                     {col}
                   </TableCell>
@@ -65,10 +66,10 @@ class BlockTable extends React.Component<BlockTableProps, BlockTableType> {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map(row => (
-                <TableRow key={row.id}>
+              {rows && rows.map((row, index) => (
+                <TableRow data-test-id={`block-table-${index}`} key={row.id} onClick={() => this.dialogOpen(row)}>
                   {cols.map(col => (
-                    <TableCell align='right' key={`${row.id}-${row[col]}`} onClick={() => this.dialogOpen(row)}>
+                    <TableCell align='right' key={`${row.id}-${row[col]}`}>
                       <Typography>{row[col]}</Typography>
                     </TableCell>
                   ))}

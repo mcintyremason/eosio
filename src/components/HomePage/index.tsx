@@ -1,10 +1,14 @@
 import * as React from 'react';
 
-import { getTopTenBlocks, Block } from '../../utils/eosio';
-import { CircularProgress } from 'material-ui';
-import BlockTable from '../BlockTable';
 import { isEmpty } from 'ramda';
-import { Button, Container, Grid, Typography } from '@material-ui/core';
+import {
+  Button, CircularProgress, Container, Grid, Typography
+} from '@material-ui/core';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+
+import { getTopTenBlocks, Block } from '../../utils/eosio';
+import BlockTable from '../BlockTable';
 
 type HomePageType = {
   blocks: Array<Block>;
@@ -56,9 +60,11 @@ class HomePage extends React.Component<{}, HomePageType> {
         >
           <h1>EOS.IO</h1>
           <Button
+            className='load-button'
             color='primary'
             variant='contained'
             value='LOAD'
+            disabled={loading}
             onClick={this.handleClick}
           >
             <Typography>LOAD</Typography>
@@ -72,8 +78,8 @@ class HomePage extends React.Component<{}, HomePageType> {
           className='block-table-grid'
         >
           {loading
-          ? <CircularProgress />
-          : !isEmpty(blocks) && <div className='blocks-container'>
+          ? <MuiThemeProvider><CircularProgress /></MuiThemeProvider>
+          : !isEmpty(blocks) && <div className='block-table-container'>
             <BlockTable
               rows={blocks}
               cols={[

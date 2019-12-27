@@ -4,9 +4,9 @@ import { getTopTenBlocks, Block } from './eosio';
 
 describe('Utilities', () => {
   describe('eosio', () => {
-    describe('getTopTenBlocks', () => {
-      let blocks: Array<Block> = [];
+    let blocks: Array<Block> = [];
 
+    describe('getTopTenBlocks', () => {
       before(done => {
         getTopTenBlocks()
         .then((_blocks: Array<Block>) => {

@@ -1,30 +1,31 @@
 import React from 'react';
-import { Block } from 'utils/eosio';
 import {
-  Button, Dialog, DialogActions, DialogContent, DialogTitle
+  Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography
 } from '@material-ui/core';
 
-export interface SimpleDialogProps {
+import { Block } from '../../utils/eosio';
+
+export interface BlockDialogProps {
   open: boolean;
-  selectedValue: Block;
+  selectedValue: Block | null;
   onClose: () => void;
 }
 
-function BlockDialog(props: SimpleDialogProps) {
+function BlockDialog(props: BlockDialogProps) {
   const { onClose, selectedValue, open } = props;
 
   return (
     selectedValue &&
-    <Dialog aria-labelledby='simple-dialog-title' { ...{ open, onClose } }>
+    <Dialog data-test-id='block-dialog' aria-labelledby='simple-dialog-title' { ...{ open, onClose } }>
       <DialogTitle id='simple-dialog-title'>Block Data</DialogTitle>
       <DialogContent>
         <pre>
-          {selectedValue}
+          {JSON.stringify(selectedValue, null, 2)}
         </pre>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color='primary'>
-          Close
+        <Button data-test-id='block-dialog-close' onClick={onClose} color='primary'>
+          <Typography>Close</Typography>
         </Button>
       </DialogActions>
     </Dialog>

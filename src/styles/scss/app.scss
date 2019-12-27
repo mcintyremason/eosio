@@ -3,56 +3,38 @@
 html {
   height: 100%;
 
-  body {
-
-    height: 100%;
-
-    div.app {
-
-      height: 100%;
-
-      .home-page-container {
-        
-        height: 100%;
-
-        .block-table-grid {
-
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%);
-        }
-      }
-    }
-  }
-
   h1 {
     color: $primary-color;
   }
-}
 
-.blocks-container {
+  .block-table-grid {
 
-  table {
-
-    thead {
-      
-      th {
-        font-size: .7rem;
-      }
-    }
-
-    tbody {
+    margin: 10% 0 0;
     
-      tr {
+    .block-table-container {
 
-        td {
-
-          p {
-            max-width: 50px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+      table {
+    
+        thead {
+          
+          th {
+            font-size: .7rem;
+          }
+        }
+    
+        tbody {
+        
+          tr {
+    
+            td {
+    
+              p {
+                max-width: 50px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+            }
           }
         }
       }
@@ -61,7 +43,7 @@ html {
 }
 
 @media screen and (min-width: 375px) {
-  .blocks-container {
+  .block-table-container {
     table {
   
       tbody {
@@ -81,7 +63,7 @@ html {
 }
 
 @media screen and (min-width: 768px) {
-  .blocks-container {
+  .block-table-container {
     table {
   
       tbody {
@@ -101,24 +83,48 @@ html {
 }
 
 @media screen and (min-width: 996px) {
-  .blocks-container {
-    table {
+  body {
 
-      thead {
-      
-        th {
-          font-size: initial;
-        }
-      }
-  
-      tbody {
-      
-        tr {
-  
-          td {
-  
-            p {
-              max-width: initial;
+    height: 100%;
+
+    div.app {
+
+      height: 100%;
+
+      .home-page-container {
+        
+        height: 100%;
+
+        .block-table-grid {
+          
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+
+          .block-table-container {
+            table {
+        
+              thead {
+              
+                th {
+                  font-size: initial;
+                }
+              }
+          
+              tbody {
+              
+                tr {
+          
+                  td {
+          
+                    p {
+                      max-width: initial;
+                    }
+                  }
+                }
+              }
             }
           }
         }

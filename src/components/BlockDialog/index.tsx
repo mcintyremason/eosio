@@ -16,8 +16,8 @@ function BlockDialog(props: BlockDialogProps) {
 
   return (
     selectedValue &&
-    <Dialog data-test-id='block-dialog' aria-labelledby='simple-dialog-title' { ...{ open, onClose } }>
-      <DialogTitle id='simple-dialog-title'>Block Data</DialogTitle>
+    <Dialog data-test-id='block-dialog' maxWidth='lg' { ...{ open, onClose } }>
+      <DialogTitle><Typography>Block Data</Typography></DialogTitle>
       <DialogContent>
         <pre>
           {JSON.stringify(selectedValue, null, 2)}
